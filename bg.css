@@ -1,0 +1,28 @@
+/* ===== calm animated backgrounds (Premium-Calm) ===== */
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.8s ease}
+html[data-bg]:not([data-bg="off"]) .bgfx{opacity:1}
+html:not([data-bg="off"]) .ambient::before{display:none}
+.bgfx .layer{position:absolute;inset:0;display:none}
+.bgfx canvas{position:absolute;inset:0;width:100%;height:100%;display:none}
+html[data-bg="aurora"] .bgfx .aurora,html[data-bg="beams"] .bgfx .beams{display:block}
+html[data-bg="silk"] .bgfx canvas,html[data-bg="dust"] .bgfx canvas{display:block}
+/* aurora: three huge soft glows drifting very slowly */
+.aurora i{position:absolute;border-radius:50%;will-change:transform}
+.aurora i:nth-child(1){width:64vmax;height:64vmax;left:-18vmax;top:-26vmax;background:radial-gradient(circle,rgba(var(--glow-rgb),.34),transparent 66%);animation:auA 80s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:56vmax;height:56vmax;right:-20vmax;top:6vh;background:radial-gradient(circle,rgba(var(--ac-rgb),.12),transparent 66%);animation:auB 96s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:58vmax;height:58vmax;left:14vw;bottom:-34vmax;background:radial-gradient(circle,rgba(var(--glow-rgb),.28),transparent 66%);animation:auC 110s ease-in-out infinite alternate}
+@keyframes auA{to{transform:translate3d(16vmax,10vmax,0) scale(1.12)}}
+@keyframes auB{to{transform:translate3d(-14vmax,16vmax,0) scale(1.08)}}
+@keyframes auC{to{transform:translate3d(-12vmax,-10vmax,0) scale(1.15)}}
+/* beams: faint light shafts sweeping sideways */
+.beams i{position:absolute;top:-15%;bottom:-15%;width:24vw;transform:skewX(-14deg);background:linear-gradient(180deg,transparent 0%,rgba(var(--ac-rgb),.075) 45%,transparent 100%);will-change:transform;animation:bm 64s ease-in-out infinite alternate}
+.beams i:nth-child(1){left:6vw}
+.beams i:nth-child(2){left:34vw;width:30vw;animation-duration:82s;animation-delay:-18s;background:linear-gradient(180deg,transparent,rgba(var(--glow-rgb),.16) 50%,transparent)}
+.beams i:nth-child(3){left:62vw;animation-duration:74s;animation-delay:-40s}
+.beams i:nth-child(4){left:84vw;width:18vw;animation-duration:90s;animation-delay:-8s;opacity:.7}
+@keyframes bm{to{transform:translate3d(9vw,0,0) skewX(-14deg)}}
+html[data-quality="light"] .bgfx .layer i{animation:none}
+@media (prefers-reduced-motion:reduce){.bgfx .layer i{animation:none}}
+@media (max-width:760px){.aurora i{animation-duration:140s}}
+#segBg{display:flex;flex-wrap:wrap;gap:4px}
+#segBg button{flex:1 1 auto}
