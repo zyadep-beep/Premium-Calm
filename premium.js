@@ -129,13 +129,12 @@
       ' float inf=smoothstep(.6,0.,d)*h;',
       ' vec2 dir=normalize((uv-m)*asp+vec2(1e-4));',
       ' float w=sin(d*26.-time*2.6)*.5+.5;',
-      ' vec2 disp=dir*inf*(.010+vel*.05)*(.4+w*.6)+vec2(sin(uv.y*8.+time*1.2),cos(uv.x*8.+time))*.0025*h;',
-      ' float ca=(.003+vel*.01)*inf;',
-      ' vec3 c;',
-      ' c.r=texture2D(t,cover(uv+disp*1.6+vec2(ca,0.))).r;',
-      ' c.g=texture2D(t,cover(uv+disp)).g;',
-      ' c.b=texture2D(t,cover(uv+disp*.4-vec2(ca,0.))).b;',
-      ' c+=inf*.05;',
+      ' vec2 disp=dir*inf*(.0045+vel*.02)*(.4+w*.6)+vec2(sin(uv.y*8.+time*1.2),cos(uv.x*8.+time))*.0008*h;',
+      ' vec2 o=1.15/res;',
+      ' vec3 c0=texture2D(t,cover(uv+disp)).rgb;',
+      ' vec3 bl=(texture2D(t,cover(uv+disp+vec2(o.x,0.))).rgb+texture2D(t,cover(uv+disp-vec2(o.x,0.))).rgb+texture2D(t,cover(uv+disp+vec2(0.,o.y))).rgb+texture2D(t,cover(uv+disp-vec2(0.,o.y))).rgb)*.25;',
+      ' vec3 c=clamp(c0+(c0-bl)*.6,0.,1.);',
+      ' c+=inf*.04;',
       ' gl_FragColor=vec4(c,1.);}'
     ].join('\n');
     const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; } return s; };
