@@ -82,13 +82,14 @@ const IC = {
   star: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z', chart: 'M4 20V10M10 20V4M16 20v-8M22 20H2'
 };
 const icons = ['chat', 'cal', 'users', 'bell', 'card', 'target', 'star', 'chart'];
+const svcArt = ['reply', 'booking', 'records', 'reminders', 'billing', 'leads', 'reviews', 'analytics'];
 
 function renderStatic() {
   document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   $$('[data-i]').forEach(e => { const v = tr(e.dataset.i); if (v) e.innerHTML = v; });
   $$('[data-ph]').forEach(e => { const v = tr(e.dataset.ph); if (v) e.placeholder = v; });
   $('#langBtn').textContent = lang === 'ar' ? 'English' : 'عربي';
-  $('#svcs').innerHTML = D.svc.map((s, i) => `<li class="scard" style="--i:${i}"><span class="sc-n">0${i + 1}</span><span class="sc-ic"><svg viewBox="0 0 24 24"><path d="${IC[icons[i]]}"/></svg></span><h3 class="sc-t">${lang === 'ar' ? s[2] : s[0]}</h3><p class="sc-d">${lang === 'ar' ? s[3] : s[1]}</p><i class="sc-line"></i></li>`).join('');
+  $('#svcs').innerHTML = D.svc.map((s, i) => `<li class="scard" style="--i:${i}"><div class="c-art" aria-hidden="true">${window.ARISE_ART ? window.ARISE_ART.svg(svcArt[i]) : ''}</div><span class="sc-n">0${i + 1}</span><span class="sc-ic"><svg viewBox="0 0 24 24"><path d="${IC[icons[i]]}"/></svg></span><h3 class="sc-t">${lang === 'ar' ? s[2] : s[0]}</h3><p class="sc-d">${lang === 'ar' ? s[3] : s[1]}</p><i class="sc-line"></i></li>`).join('');
   const words = D.m[lang === 'ar' ? 1 : 0];
   $('#mq').innerHTML = Array.from({ length: 4 }, () => words.map(w => `<span>${w}</span><span>✦</span>`).join('')).join('');
   document.title = T('One Arise — AI Automation for Kuwait & the Gulf', 'One Arise — أتمتة بالذكاء الاصطناعي للكويت والخليج');

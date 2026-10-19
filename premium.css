@@ -75,3 +75,46 @@ html[dir=rtl] .ac-t,html[dir=rtl] .sc-t{font-style:normal;font-weight:700;line-h
 @media (max-width:980px){.about-grid{grid-template-columns:1fr}.about-grid .acard:nth-child(2){margin-top:0}.acard{min-height:230px}}
 @media (max-width:560px){.stair{grid-template-columns:1fr}.scard{min-height:210px}}
 @media (prefers-reduced-motion:reduce){.cards-js .acard,.cards-js .scard{opacity:1;transform:none;transition:none}}
+
+
+/* ===== card illustrations (vector, follow the palette) ===== */
+.c-art{position:absolute;inset:0 0 auto 0;height:60%;pointer-events:none;z-index:0;opacity:.96;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 58%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 58%,transparent 100%);
+  transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.scard .c-art{height:57%}
+.c-art svg{width:100%;height:100%;display:block;overflow:visible}
+.acard:hover .c-art,.scard:hover .c-art{transform:scale(1.045)}
+.ac-t,.ac-d,.sc-t,.sc-d{position:relative;z-index:1}
+.ac-n,.ac-ic,.sc-n,.sc-ic{z-index:2}
+.acard{min-height:clamp(340px,31vw,430px)}
+.scard{min-height:clamp(300px,23vw,350px)}
+@media (max-width:980px){.acard{min-height:330px}.scard{min-height:310px}}
+.stA2{stop-color:rgb(var(--ac2-rgb))}.stA{stop-color:rgb(var(--ac-rgb))}.stG{stop-color:rgb(var(--glow-rgb))}
+.stW0{stop-color:rgb(var(--ac-rgb));stop-opacity:.34}.stW1{stop-color:rgb(var(--ac-rgb));stop-opacity:0}
+.c-art .s1{fill:none;stroke:rgb(var(--ac-rgb));stroke-opacity:.85;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.c-art .s2{fill:none;stroke:rgb(var(--ac2-rgb));stroke-opacity:.92;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.c-art .thin{stroke-width:1}
+.c-art .gl{fill:url(#arGl);stroke:rgb(var(--ac-rgb));stroke-opacity:.5;stroke-width:1.3;stroke-linejoin:round}
+.c-art .fg{fill:url(#arG)}
+.c-art .fa{fill:rgb(var(--ac-rgb))}.c-art .fa2{fill:rgb(var(--ac2-rgb))}
+.c-art .glow{fill:url(#arGw)}
+.c-art .dim{opacity:.5}
+.c-art .ck{fill:none;stroke:rgb(var(--bg-rgb));stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+@keyframes arF{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes arP{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes arD{to{stroke-dashoffset:-56}}
+@keyframes arS{to{transform:rotate(360deg)}}
+@keyframes arR{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.3);opacity:0}}
+@keyframes arB{from{transform:scaleY(.8)}to{transform:scaleY(1)}}
+.c-art .fl{animation:arF 5.5s ease-in-out infinite alternate}
+.c-art .fl2{animation-duration:7s;animation-delay:-2s}
+.c-art .pu{animation:arP 3.4s ease-in-out infinite}
+.c-art .dsh{stroke-dasharray:5 9;animation:arD 3.2s linear infinite}
+.c-art .sp{animation:arS 70s linear infinite;transform-box:fill-box;transform-origin:center}
+.c-art .sp2{animation-direction:reverse;animation-duration:46s}
+.c-art .rg{animation:arR 4.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.c-art .rg2{animation-delay:-1.5s}.c-art .rg3{animation-delay:-3s}
+.c-art .bar{animation:arB 3.4s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}
+.cards-js .acard:not(.in) .c-art *,.cards-js .scard:not(.in) .c-art *{animation-play-state:paused}
+html[data-quality=low] .c-art *,html[data-quality=light] .c-art *{animation:none!important}
+@media (prefers-reduced-motion:reduce){.c-art *{animation:none!important}}
